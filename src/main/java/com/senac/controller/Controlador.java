@@ -23,6 +23,13 @@ public class Controlador {
 	AlunoJDBCdao dao;
 	Aluno aluno = new Aluno();
 	
+	
+	@GetMapping("/")
+	public String paginaInicial() {
+		return "index";
+	}
+	
+	
 	@GetMapping("Deslogar")
 	public String deslogar() {
 		HttpSession session = dao.getSession();
@@ -32,6 +39,9 @@ public class Controlador {
 		
 	}
 	
+	
+	
+	@GetMapping("/listarAlunos")
 	public String listarAlunos(Model model) {
 					
 		ArrayList<Aluno> listaAlunos= dao.listarAlunos();			
@@ -53,7 +63,7 @@ public class Controlador {
 			
 		} else {
 			
-			model.addAttribute("error", 1);
+			model.addAttribute("error", "1");
 			
 			return "index";
 		}
@@ -96,6 +106,7 @@ public class Controlador {
 			return "detalharAluno";
 		}
 	
+	@PostMapping("confirmarCadastro")
 	public String confirmarCadastro( @RequestParam("nome") String nome, @RequestParam("idade") String idade, @RequestParam("genero") String genero, 
 			@RequestParam("semestre") String semestre, Model model, HttpSession session) {
 		
@@ -112,7 +123,7 @@ public class Controlador {
 		
 		model.addAttribute("aluno", aluno);
 		
-		return "detalhaAluno";
+		return "redirect:/detalhaAluno";
 	}
 		
 	private String criarMatricula(String idade, String semestre) {
@@ -135,7 +146,7 @@ public class Controlador {
 		return matricula;    
 	}
 	
-	@GetMapping("detalharAluno")
+	@GetMapping("/detalharAluno")
 	public String detalharAluno(@RequestParam("id") String id, Model model, HttpSession session) {
 		
 		session = dao.getSession();
