@@ -9,7 +9,6 @@ public class Aluno {
 	private String genero;
 	private String matricula;
 
-
 	public Aluno() {
 	}
 

@@ -1,31 +1,24 @@
-<%@page import="java.util.ArrayList, java.util.List, com.senac.model.Aluno" %> 
+<%@page import="java.util.ArrayList, java.util.List, com.senac.model.Aluno" %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+ 
 <%
 	String usuario = (String) session.getAttribute("usuario");
 	if (usuario == null) {
-		response.sendRedirect("index.jsp?error=2");
+		response.sendRedirect("index?error=2");
 	}
 %>
-
-
-
-
-	<h2>Dados do aluno</h2>
-	
-	
-	
-	
+ 
+	<h2>Dados do aluno</h2>	
   <%  Aluno aluno = (Aluno) request.getAttribute("aluno"); %>
-
+ 
 	
-	<!--  Id: <%= aluno.getId() %>
-	<br><br>-->
+	<%= aluno.getId() %>
+	
 	
 	<br><br>
 	Matricula: <%= aluno.getMatricula()%>
@@ -45,22 +38,9 @@
 	<br><br>
 	
 	
-	<!--  a href="listarAlunos.jsp">Voltar</a>	-->	
-	
-<form action="alterar" method="post">	
-	<input type="button"  onclick="javascript:location.href='ListarServlet'"  value="Confirmar">	
-	<input type="hidden"  name="id" value="<%=aluno.getId()%>">		
-	<input type="submit" value="Alterar">   
-</form> 	
-	
- 	<!--<input type="button"  onclick="javascript:location.href='listarAlunos.jsp'"  value="Voltar">-->	
-	<!--<a href="AlterarServlet?id=<%=//aluno.getId()%>">Alterar</a>-->
-	
-	
-	
-	
-	
-	
+		
+	<input type="button"  onclick="javascript:location.href='listarAlunos'"  value="Voltar">	
+	<a href="Alterar?id=<%=aluno.getId()%>">Alterar</a>
 	<br><br>
 	
 	

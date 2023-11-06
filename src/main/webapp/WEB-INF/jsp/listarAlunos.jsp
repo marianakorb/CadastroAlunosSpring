@@ -9,13 +9,13 @@
 <%
 	String usuario = (String) session.getAttribute("usuario");
 	if (usuario == null) {
-		response.sendRedirect("index.jsp?error=2");
+		response.sendRedirect("index?error=2");
 	}
 %>
 
 	
 <br><br>
-Clique <a href="cadastrarAluno.jsp">aqui</a> para cadastar um novo aluno
+Clique <a href="cadastrarAluno">aqui</a> para cadastar um novo aluno
 
 <% @SuppressWarnings("unchecked")
 List<Aluno> listaAlunos = (List<Aluno>) request.getAttribute("listaAlunos"); %>
@@ -23,7 +23,7 @@ List<Aluno> listaAlunos = (List<Aluno>) request.getAttribute("listaAlunos"); %>
 
 <h2>Alunos Cadastrados</h2>
 
-<form action="pesquisa method="post">       
+<form action="pesquisar" method="get">       
 		<select name="tipoPesquisa">   
 				<option value="nome">Nome</option>                  
                 <option value="matricula">Matricula</option>         		
